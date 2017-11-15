@@ -7,6 +7,7 @@ var iX = false;
 var iY = false;
 var gTime;
 var charCount = 0;
+var isLock = false;
 var mychar = {
   x:0,
   y:0,
@@ -19,33 +20,45 @@ var mychar = {
   incX:function (x){
     //this.x += x;
     gTime = setInterval(function(){
+    if(mychar.getX() > 608){
+      mychar.setX(608);
+    }
     mychar.x++;
     drawMe(mychar.x,mychar.y);
       charCount++;
-    },100);
+    },33);
   },
   decX:function (x){
     //this.x += x;
     gTime = setInterval(function(){
     mychar.x--;
+    if(mychar.getX() < 0){
+      mychar.setX(0);
+    }
     canvasDraw(mychar.x,mychar.y);
       charCount++;
-    },100);
+    },33);
   },
   incY:function (y){
     //this.x += x;
     gTime = setInterval(function(){
     mychar.y++;
+    if(mychar.getY() > 608){
+      mychar.setY(608);
+    }
     canvasDraw(mychar.x,mychar.y);
     charCount++
-    },100);
+    },33);
   },
   decY:function (y){
     gTime = setInterval(function(){
     mychar.y--;
+    if(mychar.getY() < 0){
+      mychar.setY(0);
+    }
     canvasDraw(mychar.x,mychar.y);
       charCount++;
-    },100);
+    },33);
   },
   setX:function(x){
     this.x = x;
@@ -82,6 +95,7 @@ function canvasDraw(x,y){
     for(var j = 0;j <= 20;j++){
       if(charCount >= 32){
         clearInterval(gTime);
+        isLock = false;
         charCount = 0;
       }
       myctx.drawImage(bgimg, i*32, j*32);
@@ -90,35 +104,47 @@ function canvasDraw(x,y){
   }
 }
 function moveUp(){
-  nowMe = upimg;
-  mychar.decY();
-  if(mychar.getY() < 0){
-    mychar.setY(0);
+  if(isLock == false){
+    isLock = true;
+    nowMe = upimg;
+    mychar.decY();
+    if(mychar.getY() < 0){
+      mychar.setY(0);
+    }
+    movey = 0;
   }
-  movey = 0;
 }
 function moveDown(){
-  nowMe = downimg;
-  mychar.incY();
-  if(mychar.getY() >= 608){
-    mychar.setY(608);
+  if(isLock == false){
+    isLock = true;
+    nowMe = downimg;
+    mychar.incY();
+    if(mychar.getY() >= 608){
+      mychar.setY(608);
+    }
+    movey = 0;
   }
-  movey = 0;
 }
 function moveLeft(){
-  nowMe = leftimg;
-  mychar.decX();
-  if(mychar.getX() < 0){
-    mychar.setX(0);
+  if(isLock == false){
+    isLock = true;
+    nowMe = leftimg;
+    mychar.decX();
+    if(mychar.getX() < 0){
+      mychar.setX(0);
+    }
+    movex = 0;
   }
-  movex = 0;
 }
 function moveRight(){
-  nowMe = rightimg;
-  console.log("ここまで")
-  mychar.incX();
-  if(mychar.getX() >= 608){
-    mychar.setX(608);
+  if(isLock == false){
+    isLock = true;
+    nowMe = rightimg;
+    console.log("ここまで")
+    mychar.incX();
+    if(mychar.getX() >= 608){
+      mychar.setX(608);
+    }
+    movex = 0;
   }
-  movex = 0;
 }
