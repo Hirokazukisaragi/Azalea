@@ -1,5 +1,12 @@
 var mycanvas;
 var myctx;
+var nowMe;
+var dX = false;
+var dY = false;
+var iX = false;
+var iY = false;
+var gTime;
+var charCount = 0;
 var mychar = {
   x:0,
   y:0,
@@ -9,65 +16,109 @@ var mychar = {
   getY:function(){
     return this.y;
   },
-  setX:function (x){
-    this.x += x;
+  incX:function (x){
+    //this.x += x;
+    gTime = setInterval(function(){
+    mychar.x++;
+    drawMe(mychar.x,mychar.y);
+      charCount++;
+    },100);
+  },
+  decX:function (x){
+    //this.x += x;
+    gTime = setInterval(function(){
+    mychar.x--;
+    canvasDraw(mychar.x,mychar.y);
+      charCount++;
+    },100);
+  },
+  incY:function (y){
+    //this.x += x;
+    gTime = setInterval(function(){
+    mychar.y++;
+    canvasDraw(mychar.x,mychar.y);
+    charCount++
+    },100);
+  },
+  decY:function (y){
+    gTime = setInterval(function(){
+    mychar.y--;
+    canvasDraw(mychar.x,mychar.y);
+      charCount++;
+    },100);
+  },
+  setX:function(x){
+    this.x = x;
   },
   setY:function(y){
-    this.y += y;
+    this.y = y;
   }
 }
 
-var moveup=-32;
-var movedown=32;
-var moveleft=-32;
-var moveright=32;
+var movex=0;
+var movey=0;
+  //moveup=-32function drawMe(x,y){
+  nowMe = upimg;
+function drawMe(x,y){
+  myctx.drawImage(nowMe,x,y);
+}
 
 function init(){
+  var t = 0;
   mycanvas = document.getElementById("mycanvas");
   myctx = mycanvas.getContext("2d");
+  nowMe = upimg;
   inter = setInterval(function () {
-    canvasDraw();
-  }, 33);
+    var x = mychar.getX();
+    var y = mychar.getY();
+    canvasDraw(x,y);
+  },33);
 }
-function canvasDraw(){
+
+function canvasDraw(x,y){
+  var t = 0;
+
   for(var i = 0;i <= 20;i++){
     for(var j = 0;j <= 20;j++){
-      if(mychar.getX() == i*32 && mychar.getY() == j*32){
-        myctx.drawImage(upimg,mychar.getX(),mychar.getY());
+      if(charCount >= 32){
+        clearInterval(gTime);
+        charCount = 0;
       }
-      else if(((i) % 2) == 0){
-        myctx.drawImage(bgimg, i*32, j*32);
-      }else{
-        myctx.drawImage(mtimg,i*32,j*32);
-      }
+      myctx.drawImage(bgimg, i*32, j*32);
+      drawMe(x,y);
     }
   }
 }
 function moveUp(){
-  var y = moveup;
-  mychar.setY(y);
+  nowMe = upimg;
+  mychar.decY();
   if(mychar.getY() < 0){
     mychar.setY(0);
   }
+  movey = 0;
 }
 function moveDown(){
-  var y = movedown;
-  mychar.setY(y);
-  if(mychar.getY() > 608){
+  nowMe = downimg;
+  mychar.incY();
+  if(mychar.getY() >= 608){
     mychar.setY(608);
   }
+  movey = 0;
 }
 function moveLeft(){
-  var x = moveleft;
-  mychar.setX(x);
+  nowMe = leftimg;
+  mychar.decX();
   if(mychar.getX() < 0){
     mychar.setX(0);
   }
+  movex = 0;
 }
 function moveRight(){
-  var x = moveright
-  mychar.setX(x);
-  if(mychar.getX() > 608){
+  nowMe = rightimg;
+  console.log("ここまで")
+  mychar.incX();
+  if(mychar.getX() >= 608){
     mychar.setX(608);
   }
+  movex = 0;
 }
