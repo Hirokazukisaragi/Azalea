@@ -140,7 +140,6 @@ function moveRight(){
   if(isLock == false){
     isLock = true;
     nowMe = rightimg;
-    console.log("ここまで")
     mychar.incX();
     if(mychar.getX() >= 608){
       mychar.setX(608);
