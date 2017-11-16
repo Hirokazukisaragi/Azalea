@@ -34,11 +34,34 @@ mtimg.src = "graph/mount.png";
 <script src="index.js"></script>
 </head>
 <body onload="init()">
-  <input type="button" value="up" onclick="moveUp()"><br>
-  <input type="button" value="left" onclick="moveLeft()">
+<div class="autocent">
+  <table>
+    <tr>
+    <td>
+  <div class="centable">
+  <input type="button" value="up" style="width:100%;font-size:30px;" onclick="moveUp()">
+</div>
+</td>
+</tr>
+<tr>
+  <td>
+    <div class="cent">
+<input type="button" style="height:640px;" value="left" onclick="moveLeft()">
+<span class="mycan">
   <canvas id="mycanvas" width="640" height="640"></canvas>
-  <input type="button" value="right" onclick="moveRight()"><br>
-  <input type="button" value="down" onclick="moveDown();">
+</span>
+  <input type="button" style="height:640px;" value="right" onclick="moveRight()">
+</div>
+</td>
+</tr>
+<tr>
+  <td>
+<div class="centable">
+  <input type="button" style="width:100%;font-size:30px;" value="down" onclick="moveDown();">
+</div>
+</td>
+</table>
+</div>
   <a href="http://free-of-x.com">ホームへ戻る</a>
 <!-- Place your content here -->
 <!-- SCRIPTS -->

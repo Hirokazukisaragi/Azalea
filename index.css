@@ -1,3 +1,13 @@
 body {
   background-color: gray;
 }
+
+.autocent{
+  text-align: center;
+}
+.cent{
+  display: flex;
+}
+.mycan{
+
+}
