@@ -97,6 +97,7 @@ function canvasDraw(x,y){
         clearInterval(gTime);
         isLock = false;
         charCount = 0;
+        nowMe = stopimg;
       }
       myctx.drawImage(bgimg, i*32, j*32);
       drawMe(x,y);
