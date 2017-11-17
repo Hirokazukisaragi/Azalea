@@ -37,28 +37,33 @@ mtimg.src = "graph/mount.png";
 <div class="autocent">
   <table>
     <tr>
+      <td>
+      </td>
     <td>
-  <div class="centable">
+  <!--<div class="centable">-->
   <input type="button" value="up" style="width:100%;font-size:30px;" onclick="moveUp()">
-</div>
 </td>
 </tr>
 <tr>
   <td>
-    <div class="cent">
-<input type="button" style="height:640px;" value="left" onclick="moveLeft()">
+    <!--<span class="cent">-->
+<input type="button" style="height:640px;font-size:30px;" value="left" onclick="moveLeft()">
+</td>
+<td>
 <span class="mycan">
   <canvas id="mycanvas" width="640" height="640"></canvas>
 </span>
-  <input type="button" style="height:640px;" value="right" onclick="moveRight()">
-</div>
+</td>
+<td>
+  <input type="button" style="height:640px;font-size:30px;" value="right" onclick="moveRight()">
+<!--</span>-->
 </td>
 </tr>
 <tr>
   <td>
-<div class="centable">
+  </td>
+  <td>
   <input type="button" style="width:100%;font-size:30px;" value="down" onclick="moveDown();">
-</div>
 </td>
 </table>
 </div>

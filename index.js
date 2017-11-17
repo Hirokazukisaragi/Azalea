@@ -71,7 +71,7 @@ var mychar = {
 var movex=0;
 var movey=0;
   //moveup=-32function drawMe(x,y){
-  nowMe = upimg;
+  nowMe = stopimg;
 function drawMe(x,y){
   myctx.drawImage(nowMe,x,y);
 }
@@ -80,7 +80,7 @@ function init(){
   var t = 0;
   mycanvas = document.getElementById("mycanvas");
   myctx = mycanvas.getContext("2d");
-  nowMe = upimg;
+  nowMe = stopimg;
   inter = setInterval(function () {
     var x = mychar.getX();
     var y = mychar.getY();
