@@ -87,6 +87,9 @@ function init(){
   mycanvas = document.getElementById("mycanvas");
   myctx = mycanvas.getContext("2d");
   nowMe = stopimg;
+  mycanvas.addEventListener("click",function(){
+    shot();
+  },false);
   inter = setInterval(function () {
     var x = mychar.getX();
     var y = mychar.getY();
@@ -106,6 +109,7 @@ function canvasDraw(x,y){
         nowMe = stopimg;
       }
       myctx.drawImage(bgimg, i*32, j*32);
+      drawbul(shot.x,shot.y);
       drawMe(x,y);
     }
   }
@@ -162,9 +166,7 @@ function moveRight(){
   myshot.houkoux = 0;
   myshot.houkouy = 1;
 }
-canvas.addEventListener("click",function(){
-  shot();
-},false);
+
 function shot(){
   var x = mychar.getX();
   var y = mychar.getY();
@@ -177,8 +179,8 @@ function drawbul(x,y){
   var aspectx = myshot.houkoux;
   var aspecty = myshot.houkouy;
   setInterval(function(){
-    drawImage(shotimg,shot.x,shot.y);
-    shot.x += houkoux;
-    shot.y += houkouy;
+    myctx.drawImage(shotimg,shot.x,shot.y);
+    shot.x += myshot.houkoux;
+    shot.y += myshot.houkouy;
   },33);
 }
