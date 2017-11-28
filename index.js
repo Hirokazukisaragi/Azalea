@@ -8,6 +8,12 @@ var iY = false;
 var gTime;
 var charCount = 0;
 var isLock = false;
+var myshot = {
+  x:0,
+  y:0,
+  houkoux:0,
+  houkouy:0,
+}
 var mychar = {
   x:0,
   y:0,
@@ -114,6 +120,8 @@ function moveUp(){
     }
     movey = 0;
   }
+  myshot.houkoux = 0;
+  myshot.houkouy = -1;
 }
 function moveDown(){
   if(isLock == false){
@@ -125,6 +133,8 @@ function moveDown(){
     }
     movey = 0;
   }
+    myshot.houkoux = 0;
+    myshot.houkouy = 1;
 }
 function moveLeft(){
   if(isLock == false){
@@ -136,6 +146,8 @@ function moveLeft(){
     }
     movex = 0;
   }
+  myshot.houkoux = -1;
+  myshot.houkouy = 0;
 }
 function moveRight(){
   if(isLock == false){
@@ -147,4 +159,26 @@ function moveRight(){
     }
     movex = 0;
   }
+  myshot.houkoux = 0;
+  myshot.houkouy = 1;
+}
+canvas.addEventListener("click",function(){
+  shot();
+},false);
+function shot(){
+  var x = mychar.getX();
+  var y = mychar.getY();
+  drawbul(x,y);
+}
+function drawbul(x,y){
+  var shot = myshot;
+  shot.x = x;
+  shot.y = y;
+  var aspectx = myshot.houkoux;
+  var aspecty = myshot.houkouy;
+  setInterval(function(){
+    drawImage(shotimg,shot.x,shot.y);
+    shot.x += houkoux;
+    shot.y += houkouy;
+  },33);
 }
